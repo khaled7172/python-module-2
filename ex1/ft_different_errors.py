@@ -2,40 +2,40 @@ def garden_operations():
     my_dict = {}
     print("Testing ValueError...")
     try:
-        x = int("abc")
-    except ValueError as e:
-        print(f"Caught ValueError: {e}")
-        print()
+        _ = int("abc")
+    except ValueError:
+        print("Caught ValueError: invalid literal for int()")
+    print()
     print("Testing ZeroDivisionError...")
     try:
-        y = 6 / 0
+        _ = 6 / 0
     except ZeroDivisionError as e:
         print(f"Caught ZeroDivisionError: {e}")
-        print()
+    print()
+    print("Testing FileNotFoundError...")
+    name = "missing.txt"
     try:
-        print("Testing FileNotFoundError...")
-        name = "missing.txt"
         open(name)
-    except FileNotFoundError as e:
-        print(f"Caught FileNotFoundError: {e}")
-        print()
+    except FileNotFoundError:
+        print(f"Caught FileNotFoundError: No such file '{name}'")
+    print()
+    print("Testing KeyError...")
     try:
-        print("Testing KeyError...")
-        k = "missing_plant"
-        val = my_dict['missing_key']
+        _ = my_dict['missing_key']
     except KeyError as e:
         print(f"Caught KeyError: {e}")
-        print()
+    print()
+    print("Testing multiple errors together...")
     try:
-        print("Testing multiple errors together...")
-        x = int("abc")
-        y = 6 / 0
-        open('file.txt')
-        value = my_dict['missing_key']
+        _ = int("abc")   # ValueError
+        _ = 6 / 0   # ZeroDivisionError
+        open("file.txt")   # FileNotFoundError
+        _ = my_dict['missing_key']   # KeyError
     except (ValueError, ZeroDivisionError, FileNotFoundError, KeyError):
         print("Caught an error, but program continues!")
-        print()
-        
+    print()
+
+
 def test_error_types():
     garden_operations()
 
