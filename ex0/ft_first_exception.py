@@ -1,12 +1,12 @@
-def check_temperature(temp_str):
+def check_temperature(temp_str: str) -> str:
     try:
         num = int(temp_str)
-        return (test_temperature_input(num))
+        return test_temperature_input(num)
     except ValueError:
         return f"Error: '{temp_str}' is not a valid number"
 
 
-def test_temperature_input(n):
+def test_temperature_input(n: int) -> str:
     if n >= 0 and n <= 40:
         return f"Temperature {n}℃ is perfect for plants!"
     elif n > 40:

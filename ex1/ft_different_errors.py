@@ -1,4 +1,4 @@
-def garden_operations():
+def garden_operations() -> None:
     my_dict = {}
     print("Testing ValueError...")
     try:
@@ -27,16 +27,16 @@ def garden_operations():
     print()
     print("Testing multiple errors together...")
     try:
-        _ = int("abc")   # ValueError
-        _ = 6 / 0   # ZeroDivisionError
-        open("file.txt")   # FileNotFoundError
-        _ = my_dict['missing_key']   # KeyError
+        _ = int("abc")
+        _ = 6 / 0
+        open("file.txt")
+        _ = my_dict['missing_key']
     except (ValueError, ZeroDivisionError, FileNotFoundError, KeyError):
         print("Caught an error, but program continues!")
     print()
 
 
-def test_error_types():
+def test_error_types() -> None:
     garden_operations()
 
 

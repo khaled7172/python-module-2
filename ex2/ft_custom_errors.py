@@ -16,7 +16,7 @@ if __name__ == "__main__":
     print("Testing PlantError...")
     try:
         plant_health = 2
-        if (plant_health < 5):
+        if plant_health < 5:
             raise PlantError("The tomato plant is wilting!")
     except PlantError as e:
         print(f"Caught PlantError: {e}")

@@ -1,11 +1,27 @@
-class GardenManager():
-    def __init__(self):
-        self.plants = {}
+class GardenError(Exception):
+    pass
 
-    def add_plant(self, plant_name, water_level, sunlight_hours):
+
+class PlantError(GardenError):
+    pass
+
+
+class WaterError(GardenError):
+    pass
+
+
+class GardenManager():
+    def __init__(self) -> None:
+        self.plants: dict[str, dict[str, int]] = {}
+
+    def add_plant(
+            self,
+            plant_name: str,
+            water_level: int,
+            sunlight_hours: int) -> None:
         if plant_name is None or plant_name.strip() == "":
             raise PlantError("Plant name cannot be empty!")
-        if (0 > water_level):
+        if 0 > water_level:
             raise ValueError(f"Water level {water_level} cannot be negative")
         if sunlight_hours < 0:
             raise ValueError(
@@ -16,7 +32,7 @@ class GardenManager():
         }
         print(f"Added {plant_name} successfuly")
 
-    def water_plants(self):
+    def water_plants(self) -> None:
         print("Opening watering system")
         error_occured = False
         try:
@@ -34,7 +50,7 @@ class GardenManager():
         if not error_occured:
             print("Watering completed successfully!")
 
-    def check_plant_health(self, plant_name):
+    def check_plant_health(self, plant_name: str) -> None:
         if plant_name not in self.plants:
             raise PlantError(f"{plant_name} does not exist in garden!")
         data = self.plants[plant_name]
@@ -60,19 +76,7 @@ class GardenManager():
                 data['sunlight']})")
 
 
-class GardenError(Exception):
-    pass
-
-
-class PlantError(GardenError):
-    pass
-
-
-class WaterError(GardenError):
-    pass
-
-
-def test_garden_management():
+def test_garden_management() -> None:
     garden = GardenManager()
     print("=== Garden Management System ===")
     print()
